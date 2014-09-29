@@ -32,6 +32,15 @@
 
    				$("#resultats").html(html_out);
 
+   				var coordLon = data.city.coord.lon;
+   				var coordLat = data.city.coord.lat;
+
+   				console.log("MAP = "+theMap);
+
+   				theMap.panTo(new google.maps.LatLng( coordLat,coordLon ));
+
+
+
    			})
    			.fail(function(){
    				alert("Récupération des informations impossible !");
