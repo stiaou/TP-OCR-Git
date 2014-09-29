@@ -5,9 +5,11 @@
 
    		
    		var ville = $("#ville").val();
-   		var url = "http://api.openweathermap.org/data/2.5/weather";
+   		var url = "http://api.openweathermap.org/data/2.5/forecast/daily/";
+   		var unit = "metric";
+   		var nb_day = 4;
 
-   		$.getJSON(url,{q:ville})
+   		$.getJSON(url,{q:ville,units:unit,cnt:nb_day})
    			.done(function(data){  				
 
    				if(data.cod=="404"){
@@ -19,19 +21,16 @@
    				}
 
    				var html_out = "";
-   				html_out += "<ul>";
-   				$.each(data["weather"][0],function(k,v){
-   					html_out += "<li>"+k+" > "+v+"</li>";
-   				});
-   				html_out += "</ul>";
 
-   				html_out +='<img src="http://openweathermap.org/img/w/'+data["weather"][0]["icon"]+'.png">';
+   				$.each(data["list"],function(klist,vlist){
+	   				html_out += "<ul>";
+	   				html_out += "<li>Date : "+ formatDateTime(vlist.dt)+"</li>";
+	   				html_out += "<li>Temp : "+vlist.temp.day+" °C</li>";
+	   				html_out +='<li><img src="http://openweathermap.org/img/w/'+vlist.weather[0].icon+'.png"></li>';
+	   				html_out += "</ul>";
+	   			});
 
    				$("#resultats").html(html_out);
- 
-
-
-   				console.log(data["weather"][0]);
 
    			})
    			.fail(function(){
@@ -41,6 +40,16 @@
 				console.log("fx always todo !");
    			});
    });
+
+	
+	var formatDateTime = function(unixTimestamp){
+		var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+		options.timeZone = "UTC";
+		options.timeZoneName = "short";
+
+		var d = new Date(unixTimestamp*1000);
+		return d.toLocaleDateString("fr-FR", options);
+	}
 
 
 
