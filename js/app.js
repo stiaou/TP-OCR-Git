@@ -37,7 +37,7 @@
 	   				html_out += "</ul>";
 	   			});
 
-   				$("#resultats").html(html_out);
+   				$("#meteo-result").html(html_out);
 
    				var coordLon = data.city.coord.lon;
    				var coordLat = data.city.coord.lat;
