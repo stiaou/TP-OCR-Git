@@ -7,36 +7,10 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 		<script>
-			var theMap;
-			function initialize() {
-				var mapOptions = {
-					zoom: 8,
-					center: new google.maps.LatLng(48.853409,2.3488)
-				};
-				theMap = new google.maps.Map(document.getElementById('map-canvas'),
-			  	mapOptions);
-			}
 
-			google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
 
-	    <style>
-	      html, body, #map-canvas {
-	        height: 100%;
-	        margin: 0px;
-	        padding: 0px
-	      }
-
-	      #map-canvas {
-	      	position:absolute;
-	      	top:0;
-	      	right:0;
-	      	width:50%;
-			height: 100%;
-	      }
-
-
-	    </style>
+	    <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
 
     <body>
@@ -56,8 +30,10 @@
 		</div>
 
 		<div id="map-canvas">MAP</div>
+		<div id="loader"></div>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/google_map.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
 
 

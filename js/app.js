@@ -7,9 +7,14 @@
    		var ville = $("#ville").val();
    		var url = "http://api.openweathermap.org/data/2.5/forecast/daily/";
    		var unit = "metric";
-   		var nb_day = 4;
+   		var nb_day = 7;
+         var rand = Math.round(Math.random()*(9999-100)+100);
 
-   		$.getJSON(url,{q:ville,units:unit,cnt:nb_day})
+         var $loader = $("#loader");
+
+         $loader.fadeIn();
+
+   		$.getJSON(url,{q:ville,units:unit,cnt:nb_day,__:rand})
    			.done(function(data){  				
 
    				if(data.cod=="404"){
@@ -21,6 +26,8 @@
    				}
 
    				var html_out = "";
+
+               html_out +="<h2>"+data.city.name+" ("+data.city.country+")</h2>";
 
    				$.each(data["list"],function(klist,vlist){
 	   				html_out += "<ul>";
@@ -39,14 +46,17 @@
 
    				theMap.panTo(new google.maps.LatLng( coordLat,coordLon ));
 
+               $loader.fadeOut();
 
 
    			})
    			.fail(function(){
    				alert("Récupération des informations impossible !");
+               $loader.fadeOut();
    			})
    			.always(function(){
-				console.log("fx always todo !");
+				  console.log("fx always todo !");
+               $loader.fadeOut();
    			});
    });
 

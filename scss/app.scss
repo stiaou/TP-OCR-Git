@@ -1,0 +1,29 @@
+html, body, #map-canvas {
+height: 100%;
+margin: 0px;
+padding: 0px
+}
+
+#map-canvas {
+	position:absolute;
+	top:0;
+	right:0;
+	width:50%;
+height: 100%;
+}
+
+#loader{
+	position:fixed;
+	top:0;
+	right:0;
+	bottom: 0;
+	left:0;
+	display: none;
+
+	background-color: #eee;
+	background-image: url(../img/loader.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 40%;
+	opacity: 0.8;
+}
